@@ -15,6 +15,10 @@ app.use(require('./src/middleware/dummyAuth'));
 //routes
 app.use(require('./src/routes'));
 
+const authRoutes = require('./src/routes/auth');
+
+app.use('/api/auth', authRoutes);
+
 app.listen(process.env.PORT, () =>
   console.log(` Backend running on http://localhost:${process.env.PORT}`)
 );
