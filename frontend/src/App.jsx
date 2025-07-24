@@ -3,7 +3,6 @@ import { Suspense, lazy } from "react";
 import Loading from './utils/Global-Loading/Loading';
 import useRouteProgress from './hooks/useRouteProgress.js';
 import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
 import './styles/nprogress-custom.css';
 
 const LandingPage = lazy(() => import('./pages/landingPage/LandingPage'));
@@ -43,42 +42,18 @@ export default function App() {
             <main className="main-content">
                 <Suspense fallback={<Loading />}>
                     <Routes>
-                        {/* Public Routes */}
+                        {/* All Routes are now public */}
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignUp />} />
                         
-                        {/* Protected Routes */}
-                        <Route path="/home" element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/Home" element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/branch/:branchId" element={
-                            <ProtectedRoute>
-                                <Branch />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/branch/:branchId/semester/:semesterId" element={
-                            <ProtectedRoute>
-                                <Semester />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/branch/:branchId/semester/:semesterId/subject/:subjectId" element={
-                            <ProtectedRoute>
-                                <Subject />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/admin" element={
-                            <ProtectedRoute>
-                                <AdminDashboard />
-                            </ProtectedRoute>
-                        } />
+                        {/* Previously protected routes - now public */}
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/Home" element={<Home />} />
+                        <Route path="/branch/:branchId" element={<Branch />} />
+                        <Route path="/branch/:branchId/semester/:semesterId" element={<Semester />} />
+                        <Route path="/branch/:branchId/semester/:semesterId/subject/:subjectId" element={<Subject />} />
+                        <Route path="/admin" element={<AdminDashboard />} />
                         
                         <Route path="*" element={<NotFound />}/>
                     </Routes>
