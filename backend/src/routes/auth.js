@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/me', require('../middleware/dummyAuth'), (req, res) => {
+router.get('/me', require('../middleware/dummyAuth.js'), (req, res) => {
   res.json({ success: true, user: req.user });
 });
 
@@ -51,7 +51,7 @@ router.post('/verify-domain', (req, res) => {
   res.json({ success: true, isValidDomain });
 });
 
-router.post('/logout', require('../middleware/dummyAuth'), (req, res) => {
+router.post('/logout', require('../middleware/dummyAuth.js'), (req, res) => {
   res.json({ success: true, message: 'Logged out' });
 });
 
